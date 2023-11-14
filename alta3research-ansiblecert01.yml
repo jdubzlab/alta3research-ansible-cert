@@ -4,11 +4,15 @@
   connection: local
   gather_facts: false
 
+    # This playbook was created for the Alta3 Ansible 101 Certification
+    # A variable "dinner_time" can be set to "False" when executing the playbook if it is not feeding time for the Astronauts; otherwise, Mangia Mangia!
+    # Sample command for starving the Astronauts: "ansible-playbook ./alta3research-ansiblecert01.yml -e dinner_time=False" 
+
   vars: #define variables available to all tasks
-          astronauts: "{{ lookup('url', 'http://api.open-notify.org/astros.json') }}" #fetch astronaut data from a URL and store it in a variable 
-          greeting: "Welcome home Space Crew!  You must be hungry !"
-          dinner_time: True
-          dinner_selection:
+          astronauts: "{{ lookup('url', 'http://api.open-notify.org/astros.json') }}" #fetch astronaut data from a URL and store it 
+          greeting: "Welcome home Space Crew!  You must be hungry!" #greeting message
+          dinner_time: True #change to false to disable the dinner time option or set variable at the command line
+          dinner_selection: #dinner options for the Astronauts
             - "Pizza"
             - "Tacos"
             - "Steak and Potatoes"
@@ -18,50 +22,53 @@
   tasks:
 
           - name: Display Ansible Welcome Banner
-            script: ~/alta3research-ansible-cert/scripts/welcome.pl
+            script: ~/alta3research-ansible-cert/scripts/welcome.pl #perl script that contains the welcome banner
             args:
               executable: /usr/bin/perl
-            register: welcome_banner
+            register: welcome_banner #store the results from the welcome.pl script
 
 
           - name: Display the Welcome Banner
             debug:
-              var: welcome_banner.stdout_lines
+              var: welcome_banner.stdout_lines #only display the stdout_lines from the script output
 
 
           - name: Fetch Github Repo Details
-            script: ~/alta3research-ansible-cert/scripts/githubinfo.sh
-            register: github_repo_details
+            script: ~/alta3research-ansible-cert/scripts/githubinfo.sh #bash script for getting details from the Github repo
+            register: github_repo_details #store the results from the github.info.sh script
           
 
           - name: Display the Github Repo Details 
             debug:
-              var: github_repo_details.stdout_lines
+              var: github_repo_details.stdout_lines #only display the stdout_lines from the script output
                 
 
           - name: Display Greeting to the Space Crew
             debug:
-                    msg: "{{ greeting }}"
+                    msg: "{{ greeting }}" #displays the greeting variable
             
 
-          - name: Display Crew member name and craft name from http://api.open-notify.org/astros.json and randomize
+          - name: Display Crew member name and space craft name from http://api.open-notify.org/astros.json
             debug:
                     msg: "{{ item.name }} from the space craft {{ item.craft }} has arrived. They are guest {{ ansible_loop.index }} of {{ astronauts.number }} ."
+                    # loop through the astronaut data fetched from the URL and display the specified data.  Ansible_loop.index is used to keep track of the loop iteration
+                    # - ansible_loop.index starts the counting at 1 instead of 0 whic would be ansible_loop.index0
             loop: "{{ astronauts.people }}" #loop through the JSON list
-            loop_control:
+            loop_control: # used to enable the ansible_loop.index functionality
               extended: true
 
 
           - name: Is it dinner time? #if it is dinner time then let's get the crew fed!
             debug:
                     msg: "Guess what time it is?!  That's right - it's dinner time!!  Let's get the crew fed with one of our great randomly selected meals."
-            when: dinner_time|bool
+            when: dinner_time|bool #display the message above only when the dinner_time variable is True
 
 
           - name: Display Crew member name and craft name from http://api.open-notify.org/astros.json and randomize their dinner selection
             debug:
                     msg: "{{ item.name }} will be having {{ dinner_selection|random }} for dinner this evening."
+                    # loop through the astronaut data fetched from the URL and display the specified data.  The dinner_selection variable will be randomized for the crew.
             loop: "{{ astronauts.people }}" #loop through the JSON list
-            when: dinner_time|bool
+            when: dinner_time|bool #display the message above only when the dinner_time variable is True
 
           
