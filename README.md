@@ -1,6 +1,6 @@
-## Playbook - Ansible 101 Certification | Jonathan Wilson
+# Playbook - Ansible 101 Certification | Jonathan Wilson
 
-# Updated: Nov 14, 2023
+## Updated: Nov 14, 2023
 
 The alta3research-ansiblecert01.yml playbook was created for the Alta3 Ansible 101 Certification
 
