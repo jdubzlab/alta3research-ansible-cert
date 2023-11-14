@@ -80,7 +80,7 @@
             when: dinner_time|bool # display the message above only when the dinner_time variable is True
 
 
-          - name: Create the dinner_guest_list.txt file in the ~/alta3research-ansible-cert/data folder
+          - name: Blank out any previous entries in the dinner_guest_list.txt file in the ~/alta3research-ansible-cert/menu folder
             copy:
               dest: "~/alta3research-ansible-cert/menu/dinner_guest_list.txt" # creates the dinner_guest_list.txt file for storing the meal selections
               content: "Dinner Guest List\n" # a header for the text file
