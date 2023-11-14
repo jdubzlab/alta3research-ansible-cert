@@ -16,7 +16,8 @@
   #
   # A variable "fetch_git_info" can be set to "False" when executing the Playbook to disable the display of Git Repo details
   # 
-  # Sample command for starving the Astronauts and caring less about Git Repo info: "ansible-playbook ./alta3research-ansiblecert01.yml -e dinner_time=False -e fetch_git_info=False" 
+  # Sample command for starving the Astronauts and caring less about Git Repo info: "ansible-playbook ~/alta3research-ansible-cert/alta3research-ansiblecert01.yml -e dinner_time=False -e fetch_git_info=False"
+
 
 
   vars: # define variables available to all tasks

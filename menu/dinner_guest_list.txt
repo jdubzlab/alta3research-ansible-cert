@@ -1,8 +1,0 @@
-Dinner Guest List
-2023-11-14T06:38:53Z: Jasmin Moghbeli will be having Fried Chicken.
-2023-11-14T06:38:53Z: Andreas Mogensen will be having Fried Chicken.
-2023-11-14T06:38:53Z: Satoshi Furukawa will be having Fried Chicken.
-2023-11-14T06:38:53Z: Konstantin Borisov will be having Tacos.
-2023-11-14T06:38:53Z: Oleg Kononenko will be having Spaghetti and Meatballs.
-2023-11-14T06:38:53Z: Nikolai Chub will be having Pizza.
-2023-11-14T06:38:53Z: Loral O'Hara will be having Tacos.
