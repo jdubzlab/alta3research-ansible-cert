@@ -4,7 +4,7 @@
 
 The alta3research-ansiblecert01.yml playbook was created for the Alta3 Ansible 101 Certification
 
-The Git Repo should be cloned into the top-level of the user's home drive
+The Git Repo should be cloned into the ~/alta3research-ansible-cert folder of the user's home drive
 
 A variable "dinner_time" can be set to "False" when executing the Playbook if it is not feeding time for the Astronauts; otherwise, Mangia Mangia!
 
